@@ -1,0 +1,48 @@
+---
+- set_fact:
+    kodi_home: "/home/{{ kodi_user }}"
+
+- name: ensure packages are installed
+  package:
+    name: "{{ item }}"
+  with_items:
+    - kodi
+    - intel-gpu-tools
+    - vdpauinfo
+
+- include: service.yml
+  when: kodi_type == "service"
+
+- name: ensure config directories exist
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: "{{ kodi_user }}"
+    group: "{{ kodi_user }}"
+    mode: 0755
+  with_items:
+    - "{{ kodi_home }}"
+    - "{{ kodi_home }}/.kodi"
+    - "{{ kodi_home }}/.kodi/userdata"
+    - "{{ kodi_home }}/.kodi/temp"
+
+- include: watched_list_database.yml
+  when: kodi_watched_list_database
+
+- name: ensure advanced settings file is installed
+  template:
+    src: advancedsettings.xml.j2
+    dest: "{{ kodi_home }}/.kodi/userdata/advancedsettings.xml"
+    owner: "{{ kodi_user }}"
+    group: "{{ kodi_user }}"
+    mode: 0640
+
+- name: ensure ports are open in firewall
+  firewalld:
+    port: "{{ item[1] }}"
+    zone: "{{ item[0] }}"
+    permanent: true
+    state: enabled
+  with_nested:
+    - "{{ kodi_firewall_zones }}"
+    - [ "8080/tcp", "9777/udp" ]

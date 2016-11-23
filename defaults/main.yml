@@ -1,0 +1,10 @@
+---
+kodi_type: service # service, desktop
+kodi_user: kodi
+
+kodi_database_password: secret
+
+kodi_watched_list_database: false
+kodi_watched_list_database_backup: ~
+
+kodi_firewall_zones: []

@@ -1,0 +1,46 @@
+---
+- name: ensure x11 is installed
+  package:
+    name: "{{ item }}"
+  with_items:
+    - xorg-x11-xinit
+    - xorg-x11-server-Xorg
+    - xorg-x11-drv-evdev
+    - xorg-x11-drv-qxl
+    - xorg-x11-drv-intel
+    - xorg-x11-drv-modesetting
+    - xorg-x11-drv-fbdev
+    - xorg-x11-drv-vesa
+    - mesa-dri-drivers
+    - dbus-x11
+
+- name: ensure user exists
+  user:
+    name: "{{ kodi_user }}"
+    comment: "kodi user"
+    uid: 420
+    groups: audio,video
+    shell: /bin/bash
+    home: "{{ kodi_home }}"
+
+- name: ensure service can start using xinit
+  lineinfile:
+    dest: /etc/X11/Xwrapper.config
+    line: "allowed_users = anybody"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+
+- name: ensure service is installed
+  copy:
+    src: kodi.service
+    dest: /etc/systemd/system/kodi.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: ensure service is enabled
+  service:
+    name: kodi
+    enabled: yes

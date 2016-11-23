@@ -1,0 +1,8 @@
+---
+- hosts: all
+  pre_tasks:
+    - name: ensure UnitedRPMs repository is installed
+      dnf:
+        name: "https://raw.githubusercontent.com/UnitedRPMs/unitedrpms/master/RPM/unitedrpms-{{ ansible_distribution_version }}-1.noarch.rpm"
+  roles:
+    - vagrant

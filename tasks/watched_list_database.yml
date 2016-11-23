@@ -1,0 +1,27 @@
+---
+- name: ensure database user for WatchedList addon exists
+  mysql_user:
+    name: kodi
+    host: localhost
+    password: "{{ kodi_database_password }}"
+    priv: "kodi_%.*:ALL"
+
+- name: ensure database for WatchedList addon exists
+  mysql_db:
+    name: kodi_watched
+    encoding: utf8
+    collation: utf8_general_ci
+  register: kodi_watched_database
+
+- stat:
+    path: "{{ kodi_watched_list_database_backup }}"
+  register: kodi_watched_database_backup
+  changed_when: false
+  when: kodi_watched_list_database_backup
+
+- name: import database for WatchedList addon from backup
+  mysql_db:
+    name: kodi_watched
+    state: import
+    target: "{{ kodi_watched_list_database_backup }}"
+  when: kodi_watched_database.changed and kodi_watched_list_database_backup and kodi_watched_database_backup.stat.exists
