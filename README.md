@@ -16,6 +16,7 @@ Available variables are listed below, along with default values:
 
     kodi_type: service # service, desktop
     kodi_user: kodi
+    kodi_user_create: yes
 
     kodi_database_password: secret
 
@@ -36,8 +37,8 @@ The variable `kodi_type` specifies how kodi will be used. Possible values are:
 The user which is defined in the variable `kodi_user` is used to set permissions on directories and files created
 during the setup.
 
-If `kodi_type` is set to `service` this user will be created on the system including a home directory.
-Additionally the service will be started as that user.
+If `kodi_type` is set to `service` this user will be created on the system including a home directory by default.
+You can disable that by setting `kodi_user_create` to `no`. The service will be started as that user.
 
 ### Database password
 

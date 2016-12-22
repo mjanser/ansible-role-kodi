@@ -22,6 +22,7 @@
     groups: audio,video
     shell: /bin/bash
     home: "{{ kodi_home }}"
+  when: kodi_user_create
 
 - name: ensure service can start using xinit
   lineinfile:
@@ -33,8 +34,8 @@
     mode: 0644
 
 - name: ensure service is installed
-  copy:
-    src: kodi.service
+  template:
+    src: kodi.service.j2
     dest: /etc/systemd/system/kodi.service
     owner: root
     group: root
