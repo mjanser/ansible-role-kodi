@@ -4,5 +4,19 @@
     - name: ensure UnitedRPMs repository is installed
       dnf:
         name: "https://raw.githubusercontent.com/UnitedRPMs/unitedrpms/master/RPM/unitedrpms-{{ ansible_distribution_version }}-1.noarch.rpm"
+    - name: ensure packages are installed
+      package:
+        name: "{{ item }}"
+      with_items:
+        - mariadb
+        - mariadb-server
+    - name: ensure mariadb are running
+      service:
+        name: mariadb
+        enabled: yes
+        state: running
   roles:
     - vagrant
+  vars:
+    kodi_watched_list_database: yes
+    kodi_watched_list_database_backup: /vagrant/backup.sql

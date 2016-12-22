@@ -1,4 +1,8 @@
 ---
+- name: ensure python-mysql is installed
+  package:
+    name: python-mysql
+
 - name: ensure database user for WatchedList addon exists
   mysql_user:
     name: kodi
@@ -17,11 +21,11 @@
     path: "{{ kodi_watched_list_database_backup }}"
   register: kodi_watched_database_backup
   changed_when: false
-  when: kodi_watched_list_database_backup
+  when: kodi_watched_list_database_backup is not none
 
 - name: import database for WatchedList addon from backup
   mysql_db:
     name: kodi_watched
     state: import
     target: "{{ kodi_watched_list_database_backup }}"
-  when: kodi_watched_database.changed and kodi_watched_list_database_backup and kodi_watched_database_backup.stat.exists
+  when: kodi_watched_database|changed and kodi_watched_list_database_backup is not none and kodi_watched_database_backup.stat.exists
