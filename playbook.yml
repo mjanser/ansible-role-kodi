@@ -18,5 +18,8 @@
   roles:
     - vagrant
   vars:
+    kodi_pvr_addons:
+      - mythtv
+      - hts
     kodi_watched_list_database: yes
     kodi_watched_list_database_backup: /vagrant/backup.sql

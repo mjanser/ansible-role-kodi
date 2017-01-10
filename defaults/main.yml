@@ -3,6 +3,8 @@ kodi_type: service # service, desktop
 kodi_user: kodi
 kodi_user_create: yes
 
+kodi_pvr_addons: []
+
 kodi_database_password: secret
 
 kodi_watched_list_database: false

@@ -10,6 +10,11 @@
     - intel-gpu-tools
     - vdpauinfo
 
+- name: ensure pvr packages are installed
+  package:
+    name: "kodi-pvr-{{ item }}"
+  with_items: "{{ kodi_pvr_addons }}"
+
 - include: service.yml
   when: kodi_type == "service"
 

@@ -18,6 +18,8 @@ Available variables are listed below, along with default values:
     kodi_user: kodi
     kodi_user_create: yes
 
+    kodi_pvr_addons: []
+
     kodi_database_password: secret
 
     kodi_watched_list_database: false
@@ -39,6 +41,14 @@ during the setup.
 
 If `kodi_type` is set to `service` this user will be created on the system including a home directory by default.
 You can disable that by setting `kodi_user_create` to `no`. The service will be started as that user.
+
+### PVR add-ons
+
+You can add PVR add-ons to the variable `kodi_pvr_addons` which will then be installed, for example:
+
+    kodi_pvr_addons:
+      - mythtv
+      - hts
 
 ### Database password
 
