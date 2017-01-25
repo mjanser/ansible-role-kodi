@@ -17,6 +17,7 @@ Available variables are listed below, along with default values:
     kodi_type: service # service, desktop
     kodi_user: kodi
     kodi_user_create: yes
+    kodi_user_groups: audio,video
 
     kodi_pvr_addons: []
 
@@ -41,6 +42,13 @@ during the setup.
 
 If `kodi_type` is set to `service` this user will be created on the system including a home directory by default.
 You can disable that by setting `kodi_user_create` to `no`. The service will be started as that user.
+
+The created user will be in the groups `audio` and `video` by default.
+Additional groups can be added to the variable `kodi_user_groups` as a comma separated string.
+This can be useful if you, for example, want to run pulseaudio in system mode.
+Then you can add the kodi user to the `pulse` group.
+
+The user won't have a password set and cannot login for security reasons.
 
 ### PVR add-ons
 

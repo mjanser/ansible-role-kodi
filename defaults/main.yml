@@ -2,6 +2,7 @@
 kodi_type: service # service, desktop
 kodi_user: kodi
 kodi_user_create: yes
+kodi_user_groups: audio,video
 
 kodi_pvr_addons: []
 

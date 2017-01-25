@@ -19,8 +19,8 @@
     name: "{{ kodi_user }}"
     comment: "kodi user"
     uid: 420
-    groups: audio,video
-    shell: /bin/bash
+    groups: "{{ kodi_user_groups }}"
+    shell: /sbin/nologin
     home: "{{ kodi_home }}"
   when: kodi_user_create
 

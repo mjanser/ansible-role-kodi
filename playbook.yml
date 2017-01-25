@@ -10,6 +10,7 @@
       with_items:
         - mariadb
         - mariadb-server
+        - pulseaudio
     - name: ensure mariadb are running
       service:
         name: mariadb
@@ -18,6 +19,7 @@
   roles:
     - vagrant
   vars:
+    kodi_user_groups: audio,video,pulse
     kodi_pvr_addons:
       - mythtv
       - hts
