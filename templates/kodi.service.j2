@@ -1,16 +1,13 @@
 [Unit]
 Description=Instance of Kodi using xinit
 After=systemd-user-sessions.service network.target sound.target mysqld.service
-Conflicts=getty@tty7.service
 
 [Service]
 User={{ kodi_user }}
 Group={{ kodi_user }}
-PAMName=login
 TTYPath=/dev/tty7
 ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt7
 Restart=on-abort
-StandardInput=tty
 
 [Install]
 WantedBy=graphical.target

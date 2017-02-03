@@ -23,5 +23,6 @@
     kodi_pvr_addons:
       - mythtv
       - hts
+    kodi_webserver_enable: yes
     kodi_watched_list_database: yes
     kodi_watched_list_database_backup: /vagrant/backup.sql

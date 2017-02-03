@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <advancedsettings>
-    <loglevel>0</loglevel>
     <packagefoldersize>300</packagefoldersize>
 
     <videolibrary>
@@ -11,4 +10,11 @@
         <cachemembuffersize>209715200</cachemembuffersize>
         <readbufferfactor>10</readbufferfactor>
     </network>
+
+    <services>
+        <webserver>{% if kodi_webserver_enable %}true{% else %}false{% endif %}</webserver>
+        <webserverusername>{{ kodi_webserver_user }}</webserverusername>
+        <webserverpassword>{{ kodi_webserver_password }}</webserverpassword>
+        <webserverport>{{ kodi_webserver_port }}</webserverport>
+    </services>
 </advancedsettings>
