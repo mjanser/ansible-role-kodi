@@ -21,6 +21,13 @@ Available variables are listed below, along with default values:
 
     kodi_pvr_addons: []
 
+    kodi_webserver_enable: no
+    kodi_webserver_port: 8080
+    kodi_webserver_user: kodi
+    kodi_webserver_password: ~
+
+    kodi_custom_config: ~
+
     kodi_database_password: secret
 
     kodi_watched_list_database: false
@@ -57,6 +64,30 @@ You can add PVR add-ons to the variable `kodi_pvr_addons` which will then be ins
     kodi_pvr_addons:
       - mythtv
       - hts
+
+### Web server
+
+The internal web server of kodi can be enabled with setting the variable `kodi_webserver_enable` to `yes`.
+It can be used to remote control kodi.
+
+The port on which the web server listens can be configured with `kodi_webserver_port` which defaults to `8080`.
+
+If you want to secure the access to the web server, you can set `kodi_webserver_user` and `kodi_webserver_password`.
+
+This configuration is done in `advancedsettings.xml` and therefore can't be changed in the UI any more.
+
+### Custom configuration
+
+If you want custom configuration for kodi, you can add it to `kodi_custom_config`.
+
+Please make sure you pass valid XML and valid settings as a string.
+
+Those settings are stored in `advancedsettings.xml` and therefore can't be changed in the UI any more.
+
+    kodi_custom_config: |
+                        <addons>
+                            <unknownsources>false</unknownsources>
+                        </addons>
 
 ### Database password
 

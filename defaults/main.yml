@@ -11,6 +11,8 @@ kodi_webserver_port: 8080
 kodi_webserver_user: kodi
 kodi_webserver_password: ~
 
+kodi_custom_config: ~
+
 kodi_database_password: secret
 
 kodi_watched_list_database: false
