@@ -15,7 +15,7 @@
       service:
         name: mariadb
         enabled: yes
-        state: running
+        state: started
   roles:
     - vagrant
   vars:
