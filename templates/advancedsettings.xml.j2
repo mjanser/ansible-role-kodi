@@ -18,5 +18,8 @@
         <webserverport>{{ kodi_webserver_port }}</webserverport>
     </services>
 
-    {{ kodi_custom_config|indent(4) }}
+    {% if kodi_custom_config -%}
+        {{ kodi_custom_config|indent(4) }}
+    {% endif %}
+
 </advancedsettings>
